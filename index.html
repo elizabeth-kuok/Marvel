@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Marvel</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
         <div id="content">
@@ -34,10 +35,18 @@
             function displayResponse(response) {
                 let content = document.getElementById("content");
                 let results = JSON.parse(response).data.results;
-                let heroesList = createElementOn(content, "ul", "heroes");
+                let heroesList = createElementOn(content, "div", "heroes");
                 for (let hero of results) {
                     let heroText = '' + hero.id + ': ' + hero.name 
-                    createElementOn(heroesList, "li", hero.id, heroText);
+                    let hero = createElementOn(heroesList, "div", hero.id, heroText);
+                    hero.classList.add("media");
+                    hero.innerHTML = `
+                        <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}" class="align-self-center mr-3" alt=${hero.name}>
+                        <div class="media-body">
+                            <h5 class="mt-0">${hero.name}</h5>
+                            <p>${hero.description}</p>
+                        </div>
+                    </div>`;
                 }
             }
 
