@@ -3,6 +3,12 @@
     <head>
         <title>Marvel</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            .img-200 {
+                height: 200px;
+                width: 200px;
+            }
+        </style>
     </head>
     <body>
         <div id="content">
@@ -10,7 +16,7 @@
         </div>
         <script>
             let httpRequest;
-            let requestUrl = 'https://gateway.marvel.com:443/v1/public/characters?apikey=622acfc296433d3d5fdbe221baa6da38';
+            let requestUrl = 'https://gateway.marvel.com:443/v1/public/characters?apikey=622acfc296433d3d5fdbe221baa6da38&series=24229';
             function makeRequest() {
                 httpRequest = new XMLHttpRequest();
                 if (!httpRequest) {
@@ -41,7 +47,7 @@
                     let heroElement = createElementOn(heroesList, "div", hero.id, heroText);
                     heroElement.classList.add("media");
                     heroElement.innerHTML = `
-                        <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}" class="align-self-center mr-3" alt=${hero.name}>
+                        <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}" class="img-thumbnail img-200 align-self-center mr-3" alt=${hero.name}>
                         <div class="media-body">
                             <h5 class="mt-0">${hero.name}</h5>
                             <p>${hero.description}</p>
