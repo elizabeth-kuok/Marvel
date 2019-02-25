@@ -38,9 +38,9 @@
                 let heroesList = createElementOn(content, "div", "heroes");
                 for (let hero of results) {
                     let heroText = '' + hero.id + ': ' + hero.name 
-                    let hero = createElementOn(heroesList, "div", hero.id, heroText);
-                    hero.classList.add("media");
-                    hero.innerHTML = `
+                    let heroElement = createElementOn(heroesList, "div", hero.id, heroText);
+                    heroElement.classList.add("media");
+                    heroElement.innerHTML = `
                         <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}" class="align-self-center mr-3" alt=${hero.name}>
                         <div class="media-body">
                             <h5 class="mt-0">${hero.name}</h5>
