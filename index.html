@@ -14,19 +14,23 @@
                     alert('Giving up :( Cannot create an XMLHTTP instance');
                     return false;
                 }
-                httpRequest.onreadystatechange = alertContents;
+                httpRequest.onreadystatechange = readResponse;
                 httpRequest.open('GET', requestUrl);
                 httpRequest.send();
             }
 
-            function alertContents() {
+            function readResponse() {
                 if (httpRequest.readyState === XMLHttpRequest.DONE) {
                     if (httpRequest.status === 200) {
-                        alert(httpRequest.responseText);
+                        displayResponse(httpRequest.response);
                     } else {
                         alert('There was a problem with the request.');
                     }
                 }
+            }
+
+            function displayResponse(response) {
+                console.log(response);
             }
 
             makeRequest();
