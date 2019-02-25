@@ -1,10 +1,12 @@
 <!doctype html>
 <html>
     <head>
-        <title>Marvel </title>
-
+        <title>Marvel</title>
     </head>
     <body>
+        <div id="content">
+
+        </div>
         <script>
             let httpRequest;
             let requestUrl = 'https://gateway.marvel.com:443/v1/public/characters?apikey=622acfc296433d3d5fdbe221baa6da38';
@@ -30,7 +32,26 @@
             }
 
             function displayResponse(response) {
-                console.log(JSON.parse(response));
+                let content = document.getElementById("content");
+                let results = JSON.parse(response).data.results;
+                let heroesList = createElementOn(content, "ul", "heroes");
+                for (let hero of results) {
+                    let heroText = '' + hero.id + ': ' + hero.name 
+                    createElementOn(heroesList, "li", hero.id, heroText);
+                }
+            }
+
+            function createElementOn(target, tag, id, text) {
+                let element = document.createElement(tag);
+                if (text) {
+                    let newContent = document.createTextNode(text);
+                    element.appendChild(newContent);
+                }
+                if (id) {
+                    element.id = id;
+                }
+                target.appendChild(element);
+                return element;
             }
 
             makeRequest();
