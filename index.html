@@ -7,6 +7,11 @@
             body {
                 padding-top: 24px;
             }
+            .hero-card {
+                margin-top: 12px;
+                padding: 6px;
+                border: 1px solid #ababab;
+            }
             .img-200 {
                 height: 200px;
                 width: 200px;
@@ -60,8 +65,9 @@
                 for (let hero of results) {
                     let heroText = '' + hero.id + ': ' + hero.name 
                     let heroElement = createElementOn(heroesList, "div", hero.id, heroText);
-                    heroElement.classList.add("media");
+                    heroElement.classList.add("hero-card");
                     heroElement.innerHTML = `
+                    <div class="media>
                         <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}" class="img-thumbnail img-200 align-self-center mr-3" alt=${hero.name}>
                         <div class="media-body">
                             <h5 class="mt-0">${hero.name}</h5>
