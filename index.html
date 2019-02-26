@@ -75,9 +75,10 @@
             }
 
             function buildRequestParams(params) {
-                let str = '';
-                for (let key in params) {
-                    str += key + '=' + params[key];
+                let keys = Object.keys(params);
+                let str = '' + keys[0] + '=' + params[keys[0]];
+                for (let i = 1; i < keys.length; i++) {
+                    str += "&" + keys[i] + '=' + params[keys[i]];
                 }
                 return str;
             }
