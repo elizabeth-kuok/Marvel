@@ -23,7 +23,7 @@
             <h1>Marvel Characters</h1>
             <div class="d-flex justify-content-between">
                 <div>
-                    <button type="button" class="btn btn-dark">Prev</button>
+                    <button type="button" id="prev" class="btn btn-dark">Prev</button>
                 </div>
                 <div>
                     <span id="resultCountBegin"></span>
@@ -33,27 +33,55 @@
                     <span id="totalAvailable"></span>
                 </div>
                 <div>
-                    <button type="buton" class="btn btn-dark">Next</button>
+                    <button type="button" id="next" class="btn btn-dark">Next</button>
                 </div>
             </div>
         </div>
         <div id="content" class="container"></div>
         <script>
+            const state = {};
+
+            let requestParams = {
+                apikey: '622acfc296433d3d5fdbe221baa6da38',
+                series: 354
+            };
+
             const resultCountBeginElement = document.getElementById("resultCountBegin");
             const resultCountEndElement = document.getElementById("resultCountEnd");
             const totalAvailableElement = document.getElementById("totalAvailable");
 
-            let httpRequest;
-            let requestUrl = 'https://gateway.marvel.com:443/v1/public/characters?series=354&apikey=622acfc296433d3d5fdbe221baa6da38';
+            const nextBtn = document.getElementById("next");
+            const prevBtn = document.getElementById("prev");
+
+            nextBtn.addEventListener('click', (event) => {
+                let offset = state.offset || 0;
+                if (offset + state.count < state.total) {
+                    requestParams.offset = offset + state.count;
+                    makeRequest();
+                }
+            });
+
+            
+
+            let requestUrl = 'https://gateway.marvel.com:443/v1/public/characters?';
             function makeRequest() {
-                httpRequest = new XMLHttpRequest();
+                let httpRequest = new XMLHttpRequest();
+                let queryParams = buildRequestParams(requestParams);
                 if (!httpRequest) {
                     alert('Giving up :( Cannot create an XMLHTTP instance');
                     return false;
                 }
                 httpRequest.onreadystatechange = readResponse;
-                httpRequest.open('GET', requestUrl);
+                httpRequest.open('GET', requestUrl + queryParams);
                 httpRequest.send();
+            }
+
+            function buildRequestParams(params) {
+                let str = '';
+                for (let key in params) {
+                    str += key + '=' + params[key];
+                }
+                return str;
             }
 
             function readResponse() {
@@ -67,9 +95,11 @@
             }
 
             function displayResponse(response) {
+                clearDisplay();
                 let content = document.getElementById("content");
                 let res = JSON.parse(response);
                 console.log(res);
+                setState(res.data);
                 displayResultCount(res.data);
                 let results = res.data.results;
                 let heroesList = createElementOn(content, "div", "heroes");
@@ -86,6 +116,27 @@
                             </div>
                         </div>`;
                 }
+            }
+
+            function clearDisplay() {
+                let content = document.getElementById("content");
+                content.innerHTML = '';
+                removeChildNodes(resultCountBeginElement);
+                removeChildNodes(resultCountEndElement);
+                removeChildNodes(totalAvailableElement);
+            }
+
+            function removeChildNodes(element) {
+                for (let node of element.childNodes) {
+                    element.removeChild(node);
+                }
+            }
+
+            function setState(response_data) {
+                state.limit = response_data.limit;
+                state.offset = response_data.offset;
+                state.count = response_data.count;
+                state.total = response_data.total;
             }
 
             function displayResultCount(response_data) {
