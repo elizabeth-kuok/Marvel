@@ -67,13 +67,13 @@
                     let heroElement = createElementOn(heroesList, "div", hero.id, heroText);
                     heroElement.classList.add("hero-card");
                     heroElement.innerHTML = `
-                    <div class="media>
-                        <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}" class="img-thumbnail img-200 align-self-center mr-3" alt=${hero.name}>
-                        <div class="media-body">
-                            <h5 class="mt-0">${hero.name}</h5>
-                            <p>${hero.description}</p>
-                        </div>
-                    </div>`;
+                        <div class="media">
+                            <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}" class="img-thumbnail img-200 align-self-center mr-3" alt=${hero.name}>
+                            <div class="media-body">
+                                <h5 class="mt-0">${hero.name}</h5>
+                                <p>${hero.description}</p>
+                            </div>
+                        </div>`;
                 }
             }
 
