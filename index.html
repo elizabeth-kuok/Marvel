@@ -60,13 +60,11 @@
                     makeRequest();
                 }
             });
-
-            
-
+            let httpRequest;
             let requestUrl = 'https://gateway.marvel.com:443/v1/public/characters?';
             function makeRequest() {
-                let httpRequest = new XMLHttpRequest();
                 let queryParams = buildRequestParams(requestParams);
+                httpRequest = new XMLHttpRequest();
                 if (!httpRequest) {
                     alert('Giving up :( Cannot create an XMLHTTP instance');
                     return false;
