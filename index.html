@@ -25,7 +25,13 @@
                 <div>
                     <button type="button" class="btn btn-dark">Prev</button>
                 </div>
-                <div>...................</div>
+                <div>
+                    <span id="resultCountBegin"></span>
+                    <span> to </span>
+                    <span id="resultCountEnd"></span>
+                    <span> of total: </span>
+                    <span id="totalAvailable"></span>
+                </div>
                 <div>
                     <button type="buton" class="btn btn-dark">Next</button>
                 </div>
@@ -33,6 +39,10 @@
         </div>
         <div id="content" class="container"></div>
         <script>
+            const resultCountBeginElement = document.getElementById("resultCountBegin");
+            const resultCountEndElement = document.getElementById("resultCountEnd");
+            const totalAvailableElement = document.getElementById("totalAvailable");
+
             let httpRequest;
             let requestUrl = 'https://gateway.marvel.com:443/v1/public/characters?series=354&apikey=622acfc296433d3d5fdbe221baa6da38';
             function makeRequest() {
@@ -60,6 +70,7 @@
                 let content = document.getElementById("content");
                 let res = JSON.parse(response);
                 console.log(res);
+                displayResultCount(res.data);
                 let results = res.data.results;
                 let heroesList = createElementOn(content, "div", "heroes");
                 for (let hero of results) {
@@ -77,6 +88,12 @@
                 }
             }
 
+            function displayResultCount(response_data) {
+                addTextToElement(resultCountBeginElement, response_data.offset + 1);
+                addTextToElement(resultCountEndElement, response_data.offset + response_data.count);
+                addTextToElement(totalAvailableElement, response_data.total);
+            }
+
             function createElementOn(target, tag, id, text) {
                 let element = document.createElement(tag);
                 if (text) {
@@ -88,6 +105,11 @@
                 }
                 target.appendChild(element);
                 return element;
+            }
+
+            function addTextToElement(target, text) {
+                let textNode = document.createTextNode(text);
+                target.appendChild(textNode);
             }
 
             makeRequest();
