@@ -4,6 +4,9 @@
         <title>Marvel</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
+            body {
+                padding-top: 24px;
+            }
             .img-200 {
                 height: 200px;
                 width: 200px;
@@ -11,8 +14,8 @@
         </style>
     </head>
     <body>
-        
-        <div id="content" class="container">
+        <div class="container">
+            <h1>Marvel Characters</h1>
             <div class="d-flex justify-content-between">
                 <div>
                     <button type="button" class="btn btn-dark">Prev</button>
@@ -23,6 +26,7 @@
                 </div>
             </div>
         </div>
+        <div id="content" class="container"></div>
         <script>
             let httpRequest;
             let requestUrl = 'https://gateway.marvel.com:443/v1/public/characters?apikey=622acfc296433d3d5fdbe221baa6da38&series=24229';
@@ -49,7 +53,7 @@
 
             function displayResponse(response) {
                 let content = document.getElementById("content");
-                let res = JSON.parse(response).data.results;
+                let res = JSON.parse(response);
                 console.log(res);
                 let results = res.data.results;
                 let heroesList = createElementOn(content, "div", "heroes");
