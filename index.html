@@ -60,6 +60,18 @@
                     makeRequest();
                 }
             });
+
+            prevBtn.addEventListener('click', (event) => {
+                let offset = state.offset || 0;
+                if (offset > 0) {
+                    let newOffset = offset - state.count;
+                    if (newOffset < 0) {
+                        newOffset = 0;
+                    }
+                    requestParams.offset = offset;
+                    makeRequest();
+                }
+            })
             let httpRequest;
             let requestUrl = 'https://gateway.marvel.com:443/v1/public/characters?';
             function makeRequest() {
