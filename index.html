@@ -65,6 +65,8 @@
 
             const nextBtn = document.getElementById("next");
             const prevBtn = document.getElementById("prev");
+            const searchBtn = document.getElementById("searchButton");
+            const searchInput = document.getElementById("search");
 
             nextBtn.addEventListener('click', (event) => {
                 let offset = state.offset || 0;
@@ -84,7 +86,20 @@
                     requestParams.offset = newOffset;
                     makeRequest();
                 }
-            })
+            });
+
+            searchButton.addEventListener('click', (event) => {
+                let value = searchInput.value;
+                if (value) {
+                    requestParams.nameStartsWith = value;
+                    delete requestParams.series;
+                } else {
+                    requestParams.series = 354;
+                }
+                
+                event.preventDefault();
+            });
+
             let httpRequest;
             let requestUrl = 'https://gateway.marvel.com:443/v1/public/characters?';
             function makeRequest() {
