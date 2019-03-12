@@ -19,6 +19,9 @@
             .page-control {
                 margin: 12px;
             }
+            .favorite {
+                border: 3px solid pink;
+            }
         </style>
     </head>
     <body>
@@ -162,6 +165,9 @@
                                 <p>${hero.description}</p>
                             </div>
                         </div>`;
+                    heroElement.addEventListener('click', (event) => {
+                        event.target.classList.toggle("favorite");
+                    });
                 }
             }
 
