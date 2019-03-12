@@ -189,11 +189,11 @@
 
                 heroElement.appendChild(mediaDiv);
                 let btnElement = createElementOn(heroElement, 'button', `btn-${hero.id}`, 'x');
-                btnElement.classList.add('btn', 'btn-sm', 'remove-btn');
+                btnElement.classList.add('btn', 'btn-sm', 'btn-danger', 'remove-btn');
                 btnElement.addEventListener('click', (event) => {
                     removeHeroFromFavoritesView(hero);
                     let heroCardElement = document.getElementById("" + hero.id);
-                    heroCardElement.parentNode.removeChild(heroCardElement);
+                    heroCardElement.classList.toggle("favorite");
                 });
                 mediaDiv.appendChild(btnElement);
             }
