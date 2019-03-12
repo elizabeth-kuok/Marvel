@@ -172,11 +172,11 @@
 
             function addHeroToFavoritesView(hero) {
                 let favoritesDiv = document.getElementById("favorites");
-                let heroText = '' + hero.id + ': ' + hero.name;
-                let heroElement = createElementOn(favoritesDiv, "div", "fav-" + hero.id, heroText);
+
+                let heroElement = createElementOn(favoritesDiv, "div", "fav-" + hero.id, hero.name);
 
                 let mediaDiv = document.createElement('div');
-                mediaDiv.classList.add('media-body');
+                mediaDiv.classList.add('media');
                 mediaDiv.innerHTML = `
                     <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}" class="img-thumbnail img-60 align-self-center mr-3" alt=${hero.name}>
                     <div class="media-body">
@@ -209,8 +209,7 @@
                 let results = res.data.results;
                 let heroesList = createElementOn(content, "div", "heroes");
                 for (let hero of results) {
-                    let heroText = '' + hero.id + ': ' + hero.name 
-                    let heroElement = createElementOn(heroesList, "div", hero.id, heroText);
+                    let heroElement = createElementOn(heroesList, "div", hero.id);
                     heroElement.classList.add("hero-card");
                     if (localStorage.getItem(hero.id)) {
                         heroElement.classList.add("favorite");
