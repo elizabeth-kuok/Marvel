@@ -200,6 +200,9 @@
                     let heroText = '' + hero.id + ': ' + hero.name 
                     let heroElement = createElementOn(heroesList, "div", hero.id, heroText);
                     heroElement.classList.add("hero-card");
+                    if (localStorage.getItem(hero.id)) {
+                        heroElement.classList.add("favorite");
+                    }
                     heroElement.innerHTML = `
                         <div class="media">
                             <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}" class="img-thumbnail img-200 align-self-center mr-3" alt=${hero.name}>
