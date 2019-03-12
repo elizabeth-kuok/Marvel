@@ -30,6 +30,10 @@
             .favorite {
                 border: 3px solid pink;
             }
+            .remove-btn {
+                padding: 3px;
+                font-weight: 400;
+            }
         </style>
     </head>
     <body>
@@ -173,7 +177,7 @@
             function addHeroToFavoritesView(hero) {
                 let favoritesDiv = document.getElementById("favorites");
 
-                let heroElement = createElementOn(favoritesDiv, "div", "fav-" + hero.id, hero.name);
+                let heroElement = createElementOn(favoritesDiv, "div", "fav-" + hero.id);
 
                 let mediaDiv = document.createElement('div');
                 mediaDiv.classList.add('media');
@@ -185,7 +189,7 @@
 
                 heroElement.appendChild(mediaDiv);
                 let btnElement = createElementOn(heroElement, 'button', `btn-${hero.id}`, 'x');
-                btnElement.classList.add('btn', 'btn-sm', 'btn-warning');
+                btnElement.classList.add('btn', 'btn-sm', 'remove-btn');
                 btnElement.addEventListener('click', (event) => {
                     removeHeroFromFavoritesView(hero);
                     let heroCardElement = document.getElementById("" + hero.id);
