@@ -16,8 +16,15 @@
                 height: 200px;
                 width: 200px;
             }
+            .img-40 {
+                height: 40px;
+                width: 40px;
+            }
             .page-control {
                 margin: 12px;
+            }
+            .favorite-col {
+                border-right: 1px solid #ababab;
             }
             .favorite {
                 border: 3px solid pink;
@@ -57,7 +64,9 @@
                     <div id="content"></div>
                 </div>
                 <div class="col-md-3">
-                    <h2>Favorites</h2>
+                    <div id="favorites">
+                        <h2>Favorites</h2>
+                    </div>
                 </div>
             </div>
         </div>
@@ -144,6 +153,32 @@
                 }
             }
 
+            function clearFavorites() {
+                let favoritesDiv = document.getElementById("favorites");
+                favoritesDiv.innerHTML = '';
+            }
+
+            function displayFavorites() {
+                let hero_ids = Object.keys(localStorage);
+                for (let id of hero_ids) {
+                    addHeroToFavoritesView(localStorage.getItem(id));
+                }
+            }
+
+            function addHeroToFavoritesView(hero) {
+                let favoritesDiv = document.getElementById("favorites");
+                let heroText = '' + hero.id + ': ' + hero.name 
+                    let heroElement = createElementOn(favoritesDiv, "div", "fav-" + hero.id, heroText);
+                    heroElement.innerHTML = `
+                        <div class="media">
+                            <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}" class="img-thumbnail img-40 align-self-center mr-3" alt=${hero.name}>
+                            <div class="media-body">
+                                <h5 class="mt-0">${hero.name}</h5>
+                                <p>${hero.description}</p>
+                            </div>
+                        </div>`;
+            }
+
             function displayResponse(response) {
                 clearDisplay();
                 let content = document.getElementById("content");
@@ -167,6 +202,12 @@
                         </div>`;
                     heroElement.addEventListener('click', (event) => {
                         heroElement.classList.toggle("favorite");
+                        if (localStorage.getItem(hero.id)) {
+                            localStorage.removeItem(hero.id);
+                        } else {
+                            localStorage.setItem(hero.id, hero);
+                            addHeroToFavoritesView(hero);
+                        }
                     });
                 }
             }
