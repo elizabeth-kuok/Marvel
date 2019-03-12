@@ -63,7 +63,7 @@
                     </div>
                     <div id="content"></div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 favorite-col">
                     <div id="favorites">
                         <h2>Favorites</h2>
                     </div>
@@ -163,7 +163,9 @@
             function displayFavorites() {
                 let hero_ids = Object.keys(localStorage);
                 for (let id of hero_ids) {
-                    addHeroToFavoritesView(localStorage.getItem(id));
+                    let json = localStorage.getItem(id);
+                    let hero = JSON.parse(json);
+                    addHeroToFavoritesView(hero);
                 }
             }
 
@@ -212,7 +214,7 @@
                             localStorage.removeItem(hero.id);
                             removeHeroFromFavoritesView(hero);
                         } else {
-                            localStorage.setItem(hero.id, hero);
+                            localStorage.setItem(hero.id, JSON.stringify(hero));
                             addHeroToFavoritesView(hero);
                         }
                     });
