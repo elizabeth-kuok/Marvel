@@ -16,9 +16,9 @@
                 height: 200px;
                 width: 200px;
             }
-            .img-40 {
-                height: 40px;
-                width: 40px;
+            .img-60 {
+                height: 60px;
+                width: 60px;
             }
             .page-control {
                 margin: 12px;
@@ -87,6 +87,8 @@
             const prevBtn = document.getElementById("prev");
             const searchBtn = document.getElementById("searchButton");
             const searchInput = document.getElementById("search");
+
+            displayFavorites();
 
             nextBtn.addEventListener('click', (event) => {
                 let offset = state.offset || 0;
@@ -171,12 +173,16 @@
                     let heroElement = createElementOn(favoritesDiv, "div", "fav-" + hero.id, heroText);
                     heroElement.innerHTML = `
                         <div class="media">
-                            <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}" class="img-thumbnail img-40 align-self-center mr-3" alt=${hero.name}>
+                            <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}" class="img-thumbnail img-60 align-self-center mr-3" alt=${hero.name}>
                             <div class="media-body">
-                                <h5 class="mt-0">${hero.name}</h5>
-                                <p>${hero.description}</p>
+                                <p>${hero.name}</p>
                             </div>
                         </div>`;
+            }
+
+            function removeHeroFromFavoritesView(hero) {
+                let heroElement = document.getElementById("fav-" + hero.id);
+                heroElement.parentNode.removeChild(heroElement);
             }
 
             function displayResponse(response) {
@@ -204,6 +210,7 @@
                         heroElement.classList.toggle("favorite");
                         if (localStorage.getItem(hero.id)) {
                             localStorage.removeItem(hero.id);
+                            removeHeroFromFavoritesView(hero);
                         } else {
                             localStorage.setItem(hero.id, hero);
                             addHeroToFavoritesView(hero);
