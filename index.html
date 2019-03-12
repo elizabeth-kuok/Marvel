@@ -24,33 +24,41 @@
     <body>
         <div class="container">
             <h1>Marvel Characters</h1>
-            <label for="search">Search for a hero. For example, Thor or Hulk</label>
-            <div class="input-group">
-                <input type="text" id="search" class="form-control" placeholder="Hero name">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button" id="searchButton">
-                        Search
-                    </button>
+            <div class="row">
+                <div class="col-md-9">
+                    <label for="search">Search for a hero. For example, Thor or Hulk</label>
+                    <div class="input-group">
+                        <input type="text" id="search" class="form-control" placeholder="Hero name">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="searchButton">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="page-control d-flex justify-content-between">
+                        <div>
+                            <button type="button" id="prev" class="btn btn-dark">Prev</button>
+                        </div>
+                        <div>
+                            <span id="resultCountBegin"></span>
+                            <span> to </span>
+                            <span id="resultCountEnd"></span>
+                            <span> of total: </span>
+                            <span id="totalAvailable"></span>
+                        </div>
+                        <div>
+                            <button type="button" id="next" class="btn btn-dark">Next</button>
+                        </div>
+                    </div>
                 </div>
+                <div id="content" class="container"></div>
             </div>
-            
-            <div class="page-control d-flex justify-content-between">
-                <div>
-                    <button type="button" id="prev" class="btn btn-dark">Prev</button>
-                </div>
-                <div>
-                    <span id="resultCountBegin"></span>
-                    <span> to </span>
-                    <span id="resultCountEnd"></span>
-                    <span> of total: </span>
-                    <span id="totalAvailable"></span>
-                </div>
-                <div>
-                    <button type="button" id="next" class="btn btn-dark">Next</button>
-                </div>
+            <div class="col-md-3">
+                <h2>Favorites</h2>
             </div>
         </div>
-        <div id="content" class="container"></div>
+        
         <script>
             const state = {};
 
