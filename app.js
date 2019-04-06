@@ -88,19 +88,20 @@ function addHeroToFavoritesView(hero) {
 
     favElement.addOnRemove((event) => {
         localStorage.removeItem(hero.id); 
-        favElement.element.style.opacity = 0;
-        setTimeout(() => {
-            removeHeroFromFavoritesView(hero);
-        }, 1000);
-        
+
+        removeHeroFromFavoritesView(hero);
+
         let heroCard = document.getElementById("" + hero.id);
         heroCard.toggleClass("favorite");
     });
 }
 
 function removeHeroFromFavoritesView(hero) {
-    let heroElement = document.getElementById("fav-" + hero.id);
-    heroElement.parentNode.removeChild(heroElement);
+    let favElement = document.getElementById("fav-" + hero.id);
+    favElement.element.style.opacity = 0;
+    setTimeout(() => {
+        favElement.parentNode.removeChild(favElement);
+    }, 1000);
 }
 
 function displayResponse(response) {
