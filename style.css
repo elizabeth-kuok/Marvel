@@ -5,7 +5,13 @@ body {
     margin-top: 12px;
     padding: 6px;
     border: 1px solid #ababab;
+    height: 216px;
 }
+
+.hero-card:hover {
+    height: 300px;
+}
+
 .img-200 {
     height: 200px;
     width: 200px;
