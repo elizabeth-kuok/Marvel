@@ -108,9 +108,10 @@ function displayResponse(response) {
     displayResultCount(res.data);
     let results = res.data.results;
     let heroesList = createElementOn(content, "div", "heroes");
+    let appearIn = 0;
     for (let hero of results) {
         let heroCard = createHeroCard(hero.id, heroesList, hero);
-        let appearIn = 0;
+        
         setTimeout(() => {
             heroCard.element.style.opacity = 1;
         }, appearIn);
