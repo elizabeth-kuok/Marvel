@@ -96,27 +96,7 @@ function createHeroCard(id, parent, data) {
     }
     hero.setInnerHtml( hero.createInnerHtml(data) );
     hero.attach();
-    let btnBar = new DisplayElement(null, hero.element);
-    btnBar.addClass('button-bar');
-    let btn = new DisplayElement(null, btnBar.element, 'button');
-    btn.element.classList.add('btn', 'btn-primary', 'view-button');
-    btn.element.setAttribute('data-toggle', 'modal');
-    btn.element.setAttribute('data-target', '#exampleModal')
-    btn.addText('View');
     
-    hero.addListener('mouseenter', () => {
-        setTimeout(() => {
-            btnBar.attach();
-            btn.attach();
-            setTimeout(() => {
-                btn.element.style.opacity = 1;
-            })
-        }, 1000);
-    });
-    hero.addListener('mouseleave', () => {
-        btn.element.style.opacity = 0;
-        btnBar.detach();
-    });
     return hero;
 }
 
