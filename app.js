@@ -93,8 +93,8 @@ function addHeroToFavoritesView(hero) {
             removeHeroFromFavoritesView(hero);
         }, 1000);
         
-        let heroCardElement = document.getElementById("" + hero.id);
-        heroCardElement.classList.toggle("favorite");
+        let heroCard = document.getElementById("" + hero.id);
+        heroCard.toggleClass("favorite");
     });
 }
 
