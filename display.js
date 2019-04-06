@@ -111,12 +111,3 @@ function createHeroFav(id, parent, data) {
     fav.attach();
     return fav;
 }
-
-
-// Make hero card larger on hover
-
-// Make hero cards fade in
-
-// Spinner while waiting for request from server
-
-// Show button to view hero details when hover on hero card
