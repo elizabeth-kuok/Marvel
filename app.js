@@ -98,7 +98,7 @@ function addHeroToFavoritesView(hero) {
 
 function removeHeroFromFavoritesView(hero) {
     let favElement = document.getElementById("fav-" + hero.id);
-    favElement.element.style.opacity = 0;
+    favElement.style.opacity = 0;
     setTimeout(() => {
         favElement.parentNode.removeChild(favElement);
     }, 1000);
