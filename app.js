@@ -16,11 +16,19 @@ const searchInput = document.getElementById("search");
 
 displayFavorites();
 
+function request() {
+    makeRequest(requestParams).then((res) => {
+        displayResponse(res);
+    }).catch(err => {
+        alert(err);
+    });
+}
+
 nextBtn.addEventListener('click', (event) => {
     let offset = state.offset || 0;
     if (offset + state.count < state.total) {
         requestParams.offset = offset + state.count;
-        makeRequest();
+        request();
     }
 });
 
@@ -32,7 +40,7 @@ prevBtn.addEventListener('click', (event) => {
             newOffset = 0;
         }
         requestParams.offset = newOffset;
-        makeRequest();
+        request();
     }
 });
 
@@ -44,42 +52,11 @@ searchButton.addEventListener('click', (event) => {
     } else {
         requestParams.series = 354;
     }
-    makeRequest();
+    request();
     event.preventDefault();
 });
 
-let httpRequest;
-let requestUrl = 'https://gateway.marvel.com:443/v1/public/characters?';
-function makeRequest() {
-    let queryParams = buildRequestParams(requestParams);
-    httpRequest = new XMLHttpRequest();
-    if (!httpRequest) {
-        alert('Giving up :( Cannot create an XMLHTTP instance');
-        return false;
-    }
-    httpRequest.onreadystatechange = readResponse;
-    httpRequest.open('GET', requestUrl + queryParams);
-    httpRequest.send();
-}
 
-function buildRequestParams(params) {
-    let keys = Object.keys(params);
-    let str = '' + keys[0] + '=' + params[keys[0]];
-    for (let i = 1; i < keys.length; i++) {
-        str += "&" + keys[i] + '=' + params[keys[i]];
-    }
-    return str;
-}
-
-function readResponse() {
-    if (httpRequest.readyState === XMLHttpRequest.DONE) {
-        if (httpRequest.status === 200) {
-            displayResponse(httpRequest.response);
-        } else {
-            alert('There was a problem with the request.');
-        }
-    }
-}
 
 function clearFavorites() {
     let favoritesDiv = document.getElementById("favorites");
@@ -183,4 +160,4 @@ function addTextToElement(target, text) {
     target.appendChild(textNode);
 }
 
-makeRequest();
+request();
