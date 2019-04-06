@@ -135,21 +135,10 @@ function displayResponse(response) {
     let results = res.data.results;
     let heroesList = createElementOn(content, "div", "heroes");
     for (let hero of results) {
-        let heroElement = createElementOn(heroesList, "div", hero.id);
-        heroElement.classList.add("hero-card");
-        if (localStorage.getItem(hero.id)) {
-            heroElement.classList.add("favorite");
-        }
-        heroElement.innerHTML = `
-            <div class="media">
-                <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}" class="img-thumbnail img-200 align-self-center mr-3" alt=${hero.name}>
-                <div class="media-body">
-                    <h5 class="mt-0">${hero.name}</h5>
-                    <p>${hero.description}</p>
-                </div>
-            </div>`;
-        heroElement.addEventListener('click', (event) => {
-            heroElement.classList.toggle("favorite");
+        let heroCard = createHeroCard(hero.id, heroesList, hero);
+        
+        heroCard.addListener('click', (event) => {
+            heroCard.toggleClass("favorite");
             if (localStorage.getItem(hero.id)) {
                 localStorage.removeItem(hero.id);
                 removeHeroFromFavoritesView(hero);
