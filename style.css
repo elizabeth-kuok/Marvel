@@ -6,6 +6,7 @@ body {
     padding: 6px;
     border: 1px solid #ababab;
     height: 216px;
+    transition: all 1.5s ease-in-out;
 }
 
 .hero-card:hover {
