@@ -7,7 +7,7 @@ body {
     border: 1px solid #ababab;
     height: 216px;
     opacity: 0;
-    transition: all 1.0s ease-in-out;
+    transition: opacity 1.0s ease-in-out;
 }
 
 .hero-card:hover {

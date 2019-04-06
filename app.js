@@ -87,8 +87,12 @@ function addHeroToFavoritesView(hero) {
     let favElement = createHeroFav("fav-" + hero.id, favoritesDiv, hero);
 
     favElement.addOnRemove((event) => {
-        localStorage.removeItem(hero.id);
-        removeHeroFromFavoritesView(hero);
+        localStorage.removeItem(hero.id); 
+        favElement.element.style.opacity = 0;
+        setTimeout(() => {
+            removeHeroFromFavoritesView(hero);
+        }, 1000);
+        
         let heroCardElement = document.getElementById("" + hero.id);
         heroCardElement.classList.toggle("favorite");
     });
