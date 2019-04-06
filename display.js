@@ -100,6 +100,8 @@ function createHeroCard(id, parent, data) {
     btnBar.addClass('button-bar');
     let btn = new DisplayElement(null, btnBar.element, 'button');
     btn.element.classList.add('btn', 'btn-primary', 'view-button');
+    btn.element.setAttribute('data-toggle', 'modal');
+    btn.element.setAttribute('data-target', '#exampleModal')
     btn.addText('View');
     
     hero.addListener('mouseenter', () => {
