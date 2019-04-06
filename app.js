@@ -110,7 +110,12 @@ function displayResponse(response) {
     let heroesList = createElementOn(content, "div", "heroes");
     for (let hero of results) {
         let heroCard = createHeroCard(hero.id, heroesList, hero);
-        
+        let appearIn = 0;
+        setTimeout(() => {
+            heroCard.element.style.opacity = 1;
+        }, appearIn);
+        appearIn += 250;
+
         heroCard.addListener('click', (event) => {
             heroCard.toggleClass("favorite");
             if (localStorage.getItem(hero.id)) {
