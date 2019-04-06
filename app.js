@@ -115,7 +115,7 @@ function displayResponse(response) {
         setTimeout(() => {
             heroCard.element.style.opacity = 1;
         }, appearIn);
-        appearIn += 250;
+        appearIn += 350;
 
         heroCard.addListener('click', (event) => {
             heroCard.toggleClass("favorite");

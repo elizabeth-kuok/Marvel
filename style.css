@@ -36,8 +36,14 @@ body {
     padding-top: 3px;
     padding-bottom: 3px;
     margin-bottom: 3px;
-    background-color: black;
+    
+    transition: all 1.0s ease-in-out;
 }
+
+.highlighted {
+    background-color: rgb(242, 255, 97);
+}
+
 .remove-btn {
     height: 26px;
     width: 26px;

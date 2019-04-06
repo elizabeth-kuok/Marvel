@@ -17,6 +17,9 @@ DisplayElement.prototype.addClass = function(class_name) {
 DisplayElement.prototype.toggleClass = function (class_name) {
     this.element.classList.toggle(class_name);
 }
+DisplayElement.prototype.removeClass = function (class_name) {
+    this.element.classList.remove(class_name);
+}
 DisplayElement.prototype.addListener = function(name, cb) {
     this.element.addEventListener(name, cb);
     if (this.listeners[name]) {
@@ -95,6 +98,10 @@ function createHeroCard(id, parent, data) {
 function createHeroFav(id, parent, data) {
     const fav = new HeroFav(id, parent, data);
     fav.addClass('favorite-card');
+    fav.addClass('highlighted');
+    setTimeout(() => {
+        fav.removeClass('highlighted');
+    }, 0);
     fav.create(data);
     fav.attach();
     return fav;
