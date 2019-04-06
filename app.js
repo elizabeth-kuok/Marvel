@@ -17,9 +17,18 @@ const searchInput = document.getElementById("search");
 displayFavorites();
 
 function request() {
+    const content = document.getElementById("content");
+    const loadContainer = document.createElement('div');
+    loadContainer.id = "loading-container";
+    const loadSpin = document.createElement('div');
+    loadSpin.id = "loading";
+    loadContainer.appendChild(loadSpin);
+    content.appendChild(loadContainer);
     makeRequest(requestParams).then((res) => {
+        content.removeChild(loadContainer);
         displayResponse(res);
     }).catch(err => {
+        content.removeChild(loadContainer);
         alert(err);
     });
 }
