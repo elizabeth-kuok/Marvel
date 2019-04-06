@@ -1,11 +1,15 @@
 function DisplayElement(id, parent, element_type) {
     this.parent = parent;
     this.element = document.createElement(element_type || 'div');
-    this.element.id = id;
+    if (id)
+        this.element.id = id;
     this.listeners = {};
 }
 DisplayElement.prototype.attach = function() {
     this.parent.appendChild(this.element);
+}
+DisplayElement.prototype.detach = function() {
+    this.parent.removeChild(this.element);
 }
 DisplayElement.prototype.addText = function(text) {
     let textNode = document.createTextNode(text);
@@ -92,6 +96,24 @@ function createHeroCard(id, parent, data) {
     }
     hero.setInnerHtml( hero.createInnerHtml(data) );
     hero.attach();
+    let btnBar = new DisplayElement(null, hero);
+    btnBar.addClass('button-bar');
+    let btn = new DisplayElement(null, btnBar, 'button');
+    btn.element.classList.add('btn', 'btn-primary', 'view-button');
+    btn.addText('View');
+    btn.attach();
+    hero.addListener('mouseenter', () => {
+        setTimeout(() => {
+            btnBar.attach();
+            setTimeout(() => {
+                btn.element.style.opacity = 1;
+            })
+        }, 1000);
+    });
+    hero.addListener('mouseleave', () => {
+        btn.element.style.opacity = 0;
+        btnBar.detach();
+    });
     return hero;
 }
 
