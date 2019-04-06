@@ -98,26 +98,14 @@ function displayFavorites() {
 function addHeroToFavoritesView(hero) {
     let favoritesDiv = document.getElementById("favorites");
 
-    let heroElement = createElementOn(favoritesDiv, "div", "fav-" + hero.id);
+    let favElement = createHeroFav("fav-" + hero.id, favoritesDiv, hero);
 
-    let mediaDiv = document.createElement('div');
-    mediaDiv.classList.add('media');
-    mediaDiv.innerHTML = `
-        <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}" class="img-thumbnail img-60 align-self-center mr-3" alt=${hero.name}>
-        <div class="media-body">
-            <p>${hero.name}</p>
-        </div>`;
-
-    heroElement.appendChild(mediaDiv);
-    let btnElement = createElementOn(heroElement, 'button', `btn-${hero.id}`, 'x');
-    btnElement.classList.add('btn', 'btn-sm', 'btn-danger', 'remove-btn');
-    btnElement.addEventListener('click', (event) => {
+    favElement.addOnRemove((event) => {
         localStorage.removeItem(hero.id);
         removeHeroFromFavoritesView(hero);
         let heroCardElement = document.getElementById("" + hero.id);
         heroCardElement.classList.toggle("favorite");
     });
-    mediaDiv.appendChild(btnElement);
 }
 
 function removeHeroFromFavoritesView(hero) {
