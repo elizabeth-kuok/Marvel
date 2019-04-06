@@ -94,6 +94,7 @@ function createHeroCard(id, parent, data) {
 
 function createHeroFav(id, parent, data) {
     const fav = new HeroFav(id, parent, data);
+    fav.addClass('favorite-card');
     fav.create(data);
     fav.attach();
     return fav;

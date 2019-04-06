@@ -32,6 +32,12 @@ body {
 .favorite {
     border: 3px solid pink;
 }
+.favorite-card {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-bottom: 3px;
+    background-color: black;
+}
 .remove-btn {
     height: 26px;
     width: 26px;
