@@ -96,9 +96,9 @@ function createHeroCard(id, parent, data) {
     }
     hero.setInnerHtml( hero.createInnerHtml(data) );
     hero.attach();
-    let btnBar = new DisplayElement(null, hero);
+    let btnBar = new DisplayElement(null, hero.element);
     btnBar.addClass('button-bar');
-    let btn = new DisplayElement(null, btnBar, 'button');
+    let btn = new DisplayElement(null, btnBar.element, 'button');
     btn.element.classList.add('btn', 'btn-primary', 'view-button');
     btn.addText('View');
     
