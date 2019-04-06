@@ -101,10 +101,11 @@ function createHeroCard(id, parent, data) {
     let btn = new DisplayElement(null, btnBar, 'button');
     btn.element.classList.add('btn', 'btn-primary', 'view-button');
     btn.addText('View');
-    btn.attach();
+    
     hero.addListener('mouseenter', () => {
         setTimeout(() => {
             btnBar.attach();
+            btn.attach();
             setTimeout(() => {
                 btn.element.style.opacity = 1;
             })
