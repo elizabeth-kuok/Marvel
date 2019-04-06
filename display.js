@@ -111,3 +111,6 @@ function createHeroFav(id, parent, data) {
     fav.attach();
     return fav;
 }
+
+
+
