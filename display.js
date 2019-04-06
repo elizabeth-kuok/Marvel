@@ -57,5 +57,6 @@ function createHeroCard(id, parent, data) {
         hero.addClass('favorite');
     }
     hero.setInnerHtml( hero.createInnerHtml(data) );
+    hero.display();
     return hero;
 }
