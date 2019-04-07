@@ -19,6 +19,7 @@ color: #b300b3;
     -webkit-animation: flash linear 1s infinite;
     animation: flash linear 1s infinite;
 }
+
 @-webkit-keyframes flash {
     0% { opacity: 1; } 
     50% { opacity: .1; } 
@@ -56,8 +57,14 @@ color: #b300b3;
     padding-top: 3px;
     padding-bottom: 3px;
     margin-bottom: 3px;
+
+    transform: scale(1, 1);
     
     transition: all 1.0s ease-in-out;
+}
+
+.favorite-card:hover .scale{
+    transform: scale(1.5, 1.5);
 }
 
 .highlighted {
@@ -101,3 +108,4 @@ color: #b300b3;
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
