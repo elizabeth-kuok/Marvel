@@ -9,6 +9,26 @@ body {
     opacity: 0;
     transition: all 1.0s ease-in-out;
 }
+h1 {
+    margin: center;
+    text-align: center;
+  }
+  
+.flash{
+color: #b300b3;
+    -webkit-animation: flash linear 1s infinite;
+    animation: flash linear 1s infinite;
+}
+@-webkit-keyframes flash {
+    0% { opacity: 1; } 
+    50% { opacity: .1; } 
+    100% { opacity: 1; }
+}
+@keyframes flash {
+    0% { opacity: 1; } 
+    50% { opacity: .1; } 
+    100% { opacity: 1; }
+}
 
 .hero-card:hover {
     height: 280px;
